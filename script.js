@@ -29,3 +29,19 @@ function operate(operator, a, b) {
     return divide(a, b);
   }
 }
+
+
+let firstNumber ="";
+let operator;
+let secondNumber;
+
+const digitButtons = document.querySelectorAll("[data-digit]");
+
+const display = document.querySelector("#display");
+
+digitButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    firstNumber += button.dataset.digit;
+    display.textContent = firstNumber;
+  });
+});
