@@ -32,17 +32,34 @@ function operate(operator, a, b) {
 
 
 let firstNumber ="";
-let operator;
-let secondNumber;
+let operator="";
+let secondNumber="";
 
 const digitButtons = document.querySelectorAll("[data-digit]");
 const operatorButtons = document.querySelectorAll("[data-operator]");
 
 const display = document.querySelector("#display");
 
+
 digitButtons.forEach((button) => {
   button.addEventListener("click", () => {
-    firstNumber += button.dataset.digit;
-    display.textContent = firstNumber;
+    if (operator === "") {
+      firstNumber += button.dataset.digit;
+      display.textContent = firstNumber;
+    } else {
+      secondNumber += button.dataset.digit;
+      display.textContent = secondNumber;
+    }
   });
 });
+
+
+
+
+operatorButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    operator = button.dataset.operator;
+    display.textContent = "";
+  });
+});
+
