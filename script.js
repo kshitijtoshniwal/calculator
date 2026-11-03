@@ -34,6 +34,7 @@ function operate(operator, a, b) {
 let firstNumber = "";
 let operator = "";
 let secondNumber = "";
+let resultDisplayed = false;
 
 const digitButtons = document.querySelectorAll("[data-digit]");
 const operatorButtons = document.querySelectorAll("[data-operator]");
@@ -44,6 +45,16 @@ const clearButton = document.querySelector("[data-clear]");
 
 digitButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    if (resultDisplayed) {
+      firstNumber = button.dataset.digit;
+      operator = "";
+      secondNumber = "";
+      resultDisplayed = false;
+
+      display.textContent = firstNumber;
+      return;
+    }
+
     if (operator === "") {
       firstNumber += button.dataset.digit;
       display.textContent = firstNumber;
@@ -87,12 +98,14 @@ equalsButton.addEventListener("click", () => {
   );
 
   display.textContent = Math.round(result * 1000000000) / 1000000000;
+  resultDisplayed = true;
 });
 
 clearButton.addEventListener("click", () => {
   firstNumber = "";
   operator = "";
   secondNumber = "";
+  resultDisplayed = false;
 
   display.textContent = "";
 });
