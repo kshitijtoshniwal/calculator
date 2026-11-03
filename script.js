@@ -42,6 +42,7 @@ const equalsButton = document.querySelector("[data-equals]")
 const display = document.querySelector("#display");
 const clearButton = document.querySelector("[data-clear]");
 const decimalButton = document.querySelector("[data-decimal]");
+const backspaceButton = document.querySelector("[data-backspace]");
 
 digitButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -139,6 +140,16 @@ decimalButton.addEventListener("click", () => {
     }
 
     secondNumber = secondNumber === "" ? "0." : secondNumber + ".";
+    display.textContent = secondNumber;
+  }
+});
+
+backspaceButton.addEventListener("click", () => {
+  if (operator === "") {
+    firstNumber = firstNumber.slice(0, -1);
+    display.textContent = firstNumber;
+  } else {
+    secondNumber = secondNumber.slice(0, -1);
     display.textContent = secondNumber;
   }
 });
