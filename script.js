@@ -37,7 +37,7 @@ let secondNumber="";
 
 const digitButtons = document.querySelectorAll("[data-digit]");
 const operatorButtons = document.querySelectorAll("[data-operator]");
-
+const equalsButton = document.querySelector("[data-equals]")
 const display = document.querySelector("#display");
 
 
@@ -53,9 +53,6 @@ digitButtons.forEach((button) => {
   });
 });
 
-
-
-
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
     operator = button.dataset.operator;
@@ -63,3 +60,16 @@ operatorButtons.forEach((button) => {
   });
 });
 
+equalsButton.addEventListener("click", () => {
+  if (firstNumber === "" || operator === "" || secondNumber === "") {
+    return;
+  }
+
+  const result = operate(
+    operator,
+    Number(firstNumber),
+    Number(secondNumber)
+  );
+
+  display.textContent = result;
+});
