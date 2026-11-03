@@ -153,3 +153,28 @@ backspaceButton.addEventListener("click", () => {
     display.textContent = secondNumber;
   }
 });
+
+document.addEventListener("keydown", (event) => {
+  event.preventDefault();
+
+  const key = event.key;
+
+  const digitButton = document.querySelector(`[data-digit="${key}"]`);
+  const operatorButton = document.querySelector(
+    `[data-operator="${key}"]`
+  );
+
+  if (digitButton) {
+    digitButton.click();
+  } else if (operatorButton) {
+    operatorButton.click();
+  } else if (key === "Enter" || key === "=") {
+    equalsButton.click();
+  } else if (key === "Backspace") {
+    backspaceButton.click();
+  } else if (key === "Escape") {
+    clearButton.click();
+  } else if (key === ".") {
+    decimalButton.click();
+  }
+});
