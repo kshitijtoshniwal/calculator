@@ -41,7 +41,7 @@ const operatorButtons = document.querySelectorAll("[data-operator]");
 const equalsButton = document.querySelector("[data-equals]")
 const display = document.querySelector("#display");
 const clearButton = document.querySelector("[data-clear]");
-
+const decimalButton = document.querySelector("[data-decimal]");
 
 digitButtons.forEach((button) => {
   button.addEventListener("click", () => {
@@ -74,12 +74,16 @@ operatorButtons.forEach((button) => {
         Number(secondNumber)
       );
 
-      firstNumber = String(result);
+      firstNumber = String(
+        Math.round(result * 1000000000) / 1000000000
+      );
+
       secondNumber = "";
     }
 
     operator = button.dataset.operator;
-    display.textContent = "";
+    resultDisplayed = false;
+    display.textContent = firstNumber;
   });
 });
 
@@ -91,6 +95,7 @@ equalsButton.addEventListener("click", () => {
     display.textContent = "Nope! Can't divide by zero.";
     return;
   }
+ 
   const result = operate(
     operator,
     Number(firstNumber),
@@ -108,4 +113,32 @@ clearButton.addEventListener("click", () => {
   resultDisplayed = false;
 
   display.textContent = "";
+});
+
+decimalButton.addEventListener("click", () => {
+  if (resultDisplayed) {
+    firstNumber = "0.";
+    operator = "";
+    secondNumber = "";
+    resultDisplayed = false;
+
+    display.textContent = firstNumber;
+    return;
+  }
+
+  if (operator === "") {
+    if (firstNumber.includes(".")) {
+      return;
+    }
+
+    firstNumber = firstNumber === "" ? "0." : firstNumber + ".";
+    display.textContent = firstNumber;
+  } else {
+    if (secondNumber.includes(".")) {
+      return;
+    }
+
+    secondNumber = secondNumber === "" ? "0." : secondNumber + ".";
+    display.textContent = secondNumber;
+  }
 });
