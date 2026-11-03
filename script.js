@@ -39,6 +39,7 @@ const digitButtons = document.querySelectorAll("[data-digit]");
 const operatorButtons = document.querySelectorAll("[data-operator]");
 const equalsButton = document.querySelector("[data-equals]")
 const display = document.querySelector("#display");
+const clearButton = document.querySelector("[data-clear]");
 
 
 digitButtons.forEach((button) => {
@@ -83,4 +84,12 @@ equalsButton.addEventListener("click", () => {
   );
 
   display.textContent = result;
+});
+
+clearButton.addEventListener("click", () => {
+  firstNumber = "";
+  operator = "";
+  secondNumber = "";
+
+  display.textContent = "";
 });
