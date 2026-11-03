@@ -31,9 +31,9 @@ function operate(operator, a, b) {
 }
 
 
-let firstNumber ="";
-let operator="";
-let secondNumber="";
+let firstNumber = "";
+let operator = "";
+let secondNumber = "";
 
 const digitButtons = document.querySelectorAll("[data-digit]");
 const operatorButtons = document.querySelectorAll("[data-operator]");
@@ -76,7 +76,10 @@ equalsButton.addEventListener("click", () => {
   if (firstNumber === "" || operator === "" || secondNumber === "") {
     return;
   }
-
+  if (operator === "/" && Number(secondNumber) === 0) {
+    display.textContent = "Nope! Can't divide by zero.";
+    return;
+  }
   const result = operate(
     operator,
     Number(firstNumber),
