@@ -83,7 +83,7 @@ equalsButton.addEventListener("click", () => {
     Number(secondNumber)
   );
 
-  display.textContent = result;
+  display.textContent = Math.round(result * 1000000000) / 1000000000;
 });
 
 clearButton.addEventListener("click", () => {
