@@ -55,6 +55,17 @@ digitButtons.forEach((button) => {
 
 operatorButtons.forEach((button) => {
   button.addEventListener("click", () => {
+    if (firstNumber !== "" && secondNumber !== "") {
+      const result = operate(
+        operator,
+        Number(firstNumber),
+        Number(secondNumber)
+      );
+
+      firstNumber = String(result);
+      secondNumber = "";
+    }
+
     operator = button.dataset.operator;
     display.textContent = "";
   });
