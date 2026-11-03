@@ -36,6 +36,7 @@ let operator;
 let secondNumber;
 
 const digitButtons = document.querySelectorAll("[data-digit]");
+const operatorButtons = document.querySelectorAll("[data-operator]");
 
 const display = document.querySelector("#display");
 
